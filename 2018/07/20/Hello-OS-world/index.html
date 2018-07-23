@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="OS," />
 
 
 
@@ -79,13 +79,17 @@
 
 
 
+<meta name="description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
+<meta name="keywords" content="OS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello, OS world">
+<meta property="og:title" content="Hello, OS world!">
 <meta property="og:url" content="http://yoursite.com/2018/07/20/Hello-OS-world/index.html">
 <meta property="og:site_name" content="hahah">
-<meta property="og:updated_time" content="2018-07-19T17:13:34.050Z">
+<meta property="og:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
+<meta property="og:updated_time" content="2018-07-23T14:37:11.626Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello, OS world">
+<meta name="twitter:title" content="Hello, OS world!">
+<meta name="twitter:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
 
 
 
@@ -121,7 +125,7 @@
 
 
 
-  <title>Hello, OS world | hahah</title>
+  <title>Hello, OS world! | hahah</title>
   
 
 
@@ -245,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello, OS world</h1>
+          <h1 class="post-title" itemprop="name headline">Hello, OS world!</h1>
         
 
         <div class="post-meta">
@@ -295,7 +299,114 @@
       
 
       
-        
+        <blockquote>
+<p>从0开始到”Hello, OS world!”</p>
+</blockquote>
+<p>这篇文章主要涉及: </p>
+<ul>
+<li>如何安装VirtualBox 、Ubuntu、NASM 、Bochs </li>
+<li>如何生成虚拟软盘</li>
+<li>如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统” </li>
+</ul>
+<p>这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！</p>
+<p>##安装工具</p>
+<blockquote>
+<p>工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x86架构的汇编与反汇编工具。它可以用来编写16位、32位（IA-32）和64位（x86-64）的程序。 NASM被认为是Linux平台上最受欢迎的汇编工具之一。Bochs，主要用于操作系统开发（当一个模拟操作系统崩溃，它不崩溃主机操作系统，所以可以调试仿真操作系统）和在主机操作系统运行其他来宾操作系统。（来自维基百科）</p>
+</blockquote>
+<p>###1. 在Mac上使用VirtualBox虚拟机安装Ubuntu</p>
+<p>我完全参照了<a href="https://blog.csdn.net/shenhaifeiniao/article/details/69397000" target="_blank" rel="noopener">在Mac上使用virtualbox虚拟机安装ubuntu</a></p>
+<p>其中第三点<strong>主机与虚拟机文件夹共享</strong>在后来的操作中也非常有用</p>
+<h3 id="2-在Ubuntu上安装Bochs"><a href="#2-在Ubuntu上安装Bochs" class="headerlink" title="2. 在Ubuntu上安装Bochs"></a>2. 在Ubuntu上安装Bochs</h3><p>不要用命令行直接安装，要去官网下载之后才能调试。</p>
+<ol>
+<li><p>在Ubuntu中进入Boths官网(<a href="http://bochs.sourceforge.net/)，首页中有关于最新版的信息，点击SourceForge" target="_blank" rel="noopener">http://bochs.sourceforge.net/)，首页中有关于最新版的信息，点击SourceForge</a> Project Page</p>
+</li>
+<li><p>然后就出现了一大堆东西，该下载哪个呢？从书上之后的代码来看，应该是下载<code>boths-版本号.tar.gz</code>，我的是<code>nasm-2.6.9.tar.gz</code></p>
+</li>
+<li><p>下载完毕后打开终端，总共只有5条命令，第一条是：</p>
+<p><code>tar vxzf boths-2.6.9.tar.gz的绝对地址</code></p>
+<p>绝对地址可以直接拖那个文件进终端，我的是</p>
+<p><code>tar vxzf /home/chenyulei/下载/bochs-2.6.9.tar.gz</code></p>
+</li>
+<li><p>继续在终端输入第二条命令：</p>
+<p><code>cd bochs-2.6.9</code></p>
+<p>在主目录新建一个名为bochs-2.6.9的文件夹并打开</p>
+</li>
+<li><p>继续输入第三条命令：（<strong>记得以后重新输入的时候一定要在bochs-2.6.9目录下，就是要cd bochs-2.6.9一下</strong>）</p>
+<p><code>./configure --enable-debugger --enable-disasm</code></p>
+<p>这一步是为了打开调试功能的开关，但会出现一些bug：</p>
+<ul>
+<li><p>Bug1：<code>configure: error: no acceptable C compiler found in $PATH</code></p>
+<p>解决方法：首先输入<code>cd</code>回到主目录（不知道是否必然但是最好这样做一下，之后的bug也是，就不再提醒了），然后输入<code>sudo apt-get install gcc</code></p>
+</li>
+<li><p>Bug2：<code>configure: error: C++ preprocessor &quot;/lib/cpp&quot; fails sanity check</code></p>
+<p>解决方法：<code>sudo apt-get install build-essential</code></p>
+</li>
+<li><p>Bug3：<code>ERROR: X windows gui was selected, but X windows libraries were not found.</code></p>
+<p>解决方法：<code>sudo apt-get install xorg-dev</code></p>
+</li>
+<li><p>Bug4：<code>fatal error: X11/Xlib.h: No such file or directory</code></p>
+<p><code>fatal error: X11/extensions/Xrandr.h: No such file or directory</code></p>
+<p>解决方法：<code>sudo apt-get install libx11-dev libxrandr-dev</code></p>
+</li>
+</ul>
+</li>
+<li><p>直到没有error后，输入第四条和第五条命令：</p>
+<p><code>make</code></p>
+<p><code>sudo make install</code></p>
+</li>
+</ol>
+<h3 id="3-在Ubuntu上安装NASM"><a href="#3-在Ubuntu上安装NASM" class="headerlink" title="3. 在Ubuntu上安装NASM"></a>3. 在Ubuntu上安装NASM</h3><ol>
+<li><p>在Ubuntu中进入NASM官网(<a href="https://www.nasm.us/)，在首页的Latest" target="_blank" rel="noopener">https://www.nasm.us/)，在首页的Latest</a> Version中选择The latest stable version，我的是2.13.03</p>
+</li>
+<li><p>然后又出现了一大堆东西，依然下载<code>nasm-版本号.tar.gz</code>，我的是<code>nasm-2.13.03.tar.gz</code></p>
+</li>
+<li><p>下载完毕后打开终端，总共只有5条命令，分别是</p>
+<p><code>tar vxzf nasm-2.13.03.tar.gz的绝对地址</code></p>
+<p><code>cd nasm-2.13.03</code></p>
+<p><code>/.configure</code></p>
+<p><code>make</code></p>
+<p><code>sudo make install</code></p>
+</li>
+</ol>
+<p>##将源程序编译成可执行文件制作启动盘</p>
+<p>该部分参考了<a href="https://blog.csdn.net/friendley/article/details/51398336" target="_blank" rel="noopener">https://blog.csdn.net/friendley/article/details/51398336</a></p>
+<h3 id="1-使用NASM编译源文件"><a href="#1-使用NASM编译源文件" class="headerlink" title="1. 使用NASM编译源文件"></a>1. 使用NASM编译源文件</h3><ul>
+<li>在安装ubuntu时准备的共享文件夹这时候派上用场了，在mac os上把下载好的书上的代码复制到共享文件夹中，在ubuntu中的共享文件夹中打开终端，输入<code>nasm boot.asm -o boot.bin</code></li>
+<li>将boot.bin和bootsrc移动到bochs-2.6.9目录下</li>
+</ul>
+<p>###2. 生成虚拟软盘</p>
+<ul>
+<li>依次在终端输入<code>cd bochs-2.6.9</code>、<code>bximage</code></li>
+<li>依次操作：<ul>
+<li>输入1，回车</li>
+<li>输入fd，回车</li>
+<li>接下来都回车（默认输入方括号中的内容）</li>
+</ul>
+</li>
+</ul>
+<p>###3. 将引导扇区写进软盘中</p>
+<ul>
+<li><p>此时软盘和编译好的源码都准备好了，并且都放在了bochs目录下，在终端输入：</p>
+<p><code>dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc</code></p>
+</li>
+<li><p>在bochs-2.6.9目录中找到bothscr并打开，修改其中内容为：</p>
+<p>特别注意：第9、10、13行的地址要修改为你的文件的绝对地址，在文件上右键属性可以查看父文件夹地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">###################################################################</span><br><span class="line"># Configuration file for Bochs</span><br><span class="line">###################################################################</span><br><span class="line"> </span><br><span class="line"># how much memory the emulated machine will have</span><br><span class="line">megs: 32</span><br><span class="line"> </span><br><span class="line"># filename of ROM images</span><br><span class="line">romimage: file=/home/chenyulei/bochs-2.6.9/bios/BIOS-bochs-latest, address=0xfffe0000</span><br><span class="line">vgaromimage: file=/home/chenyulei/bochs-2.6.9/bios/VGABIOS-elpin-2.40</span><br><span class="line"> </span><br><span class="line"># what disk images will be used</span><br><span class="line">floppya: 1_44=/home/chenyulei/bochs-2.6.9/a.img, status=inserted</span><br><span class="line"> </span><br><span class="line"># choose the boot disk</span><br><span class="line">boot: floppy</span><br><span class="line"> </span><br><span class="line"># where do we send log message?</span><br><span class="line">log: bochsout.txt</span><br><span class="line"> </span><br><span class="line"># disable the mouse</span><br><span class="line">mouse: enabled=0</span><br><span class="line"> </span><br><span class="line"># enable key mapping, using US layout as default</span><br><span class="line">keyboard: type=mf, serial_delay=200, paste_delay=100000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在终端输入<code>bochs -f bochsrc</code></p>
+</li>
+<li><p>依次操作：</p>
+<ul>
+<li>回车</li>
+<li>输入b 0x7c00，回车（在内存0x7c00处设置断点）</li>
+<li>输入n，回车（向下执行一步）</li>
+<li>输入n，回车</li>
+<li>输入n，回车</li>
+</ul>
+</li>
+</ul>
+<p>如果bochs中出现了红色的Hello, OS world!那么恭喜你成功了。</p>
+
       
     </div>
     
@@ -309,6 +420,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OS/" rel="tag"># OS</a>
+          
+        </div>
       
 
       
@@ -379,8 +496,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -417,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
@@ -442,6 +568,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在Ubuntu上安装Bochs"><span class="nav-number">1.</span> <span class="nav-text"><a href="#2-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs" class="headerlink" title="2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs"></a>2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在Ubuntu上安装NASM"><span class="nav-number">2.</span> <span class="nav-text"><a href="#3-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM" class="headerlink" title="3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM"></a>3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用NASM编译源文件"><span class="nav-number">3.</span> <span class="nav-text"><a href="#1-&#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;" class="headerlink" title="1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;"></a>1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
