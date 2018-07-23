@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
+<meta name="description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ 安装工具 工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x86架构">
 <meta name="keywords" content="OS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello, OS world!">
 <meta property="og:url" content="http://yoursite.com/2018/07/20/Hello-OS-world/index.html">
 <meta property="og:site_name" content="hahah">
-<meta property="og:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
-<meta property="og:updated_time" content="2018-07-23T14:37:11.626Z">
+<meta property="og:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ 安装工具 工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x86架构">
+<meta property="og:updated_time" content="2018-07-23T14:41:24.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello, OS world!">
-<meta name="twitter:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ ##安装工具  工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x8">
+<meta name="twitter:description" content="从0开始到”Hello, OS world!”  这篇文章主要涉及:   如何安装VirtualBox 、Ubuntu、NASM 、Bochs  如何生成虚拟软盘 如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”   这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！ 安装工具 工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x86架构">
 
 
 
@@ -309,12 +309,10 @@
 <li>如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统” </li>
 </ul>
 <p>这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！</p>
-<p>##安装工具</p>
-<blockquote>
+<h2 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h2><blockquote>
 <p>工欲善其事，必先利其器。NASM，全称Netwide Assembler，是一款基于英特尔x86架构的汇编与反汇编工具。它可以用来编写16位、32位（IA-32）和64位（x86-64）的程序。 NASM被认为是Linux平台上最受欢迎的汇编工具之一。Bochs，主要用于操作系统开发（当一个模拟操作系统崩溃，它不崩溃主机操作系统，所以可以调试仿真操作系统）和在主机操作系统运行其他来宾操作系统。（来自维基百科）</p>
 </blockquote>
-<p>###1. 在Mac上使用VirtualBox虚拟机安装Ubuntu</p>
-<p>我完全参照了<a href="https://blog.csdn.net/shenhaifeiniao/article/details/69397000" target="_blank" rel="noopener">在Mac上使用virtualbox虚拟机安装ubuntu</a></p>
+<h3 id="1-在Mac上使用VirtualBox虚拟机安装Ubuntu"><a href="#1-在Mac上使用VirtualBox虚拟机安装Ubuntu" class="headerlink" title="1. 在Mac上使用VirtualBox虚拟机安装Ubuntu"></a>1. 在Mac上使用VirtualBox虚拟机安装Ubuntu</h3><p>我完全参照了<a href="https://blog.csdn.net/shenhaifeiniao/article/details/69397000" target="_blank" rel="noopener">在Mac上使用virtualbox虚拟机安装ubuntu</a></p>
 <p>其中第三点<strong>主机与虚拟机文件夹共享</strong>在后来的操作中也非常有用</p>
 <h3 id="2-在Ubuntu上安装Bochs"><a href="#2-在Ubuntu上安装Bochs" class="headerlink" title="2. 在Ubuntu上安装Bochs"></a>2. 在Ubuntu上安装Bochs</h3><p>不要用命令行直接安装，要去官网下载之后才能调试。</p>
 <ol>
@@ -368,14 +366,12 @@
 <p><code>sudo make install</code></p>
 </li>
 </ol>
-<p>##将源程序编译成可执行文件制作启动盘</p>
-<p>该部分参考了<a href="https://blog.csdn.net/friendley/article/details/51398336" target="_blank" rel="noopener">https://blog.csdn.net/friendley/article/details/51398336</a></p>
+<h2 id="将源程序编译成可执行文件制作启动盘"><a href="#将源程序编译成可执行文件制作启动盘" class="headerlink" title="将源程序编译成可执行文件制作启动盘"></a>将源程序编译成可执行文件制作启动盘</h2><p>该部分参考了<a href="https://blog.csdn.net/friendley/article/details/51398336" target="_blank" rel="noopener">https://blog.csdn.net/friendley/article/details/51398336</a></p>
 <h3 id="1-使用NASM编译源文件"><a href="#1-使用NASM编译源文件" class="headerlink" title="1. 使用NASM编译源文件"></a>1. 使用NASM编译源文件</h3><ul>
 <li>在安装ubuntu时准备的共享文件夹这时候派上用场了，在mac os上把下载好的书上的代码复制到共享文件夹中，在ubuntu中的共享文件夹中打开终端，输入<code>nasm boot.asm -o boot.bin</code></li>
 <li>将boot.bin和bootsrc移动到bochs-2.6.9目录下</li>
 </ul>
-<p>###2. 生成虚拟软盘</p>
-<ul>
+<h3 id="2-生成虚拟软盘"><a href="#2-生成虚拟软盘" class="headerlink" title="2. 生成虚拟软盘"></a>2. 生成虚拟软盘</h3><ul>
 <li>依次在终端输入<code>cd bochs-2.6.9</code>、<code>bximage</code></li>
 <li>依次操作：<ul>
 <li>输入1，回车</li>
@@ -384,8 +380,7 @@
 </ul>
 </li>
 </ul>
-<p>###3. 将引导扇区写进软盘中</p>
-<ul>
+<h3 id="3-将引导扇区写进软盘中"><a href="#3-将引导扇区写进软盘中" class="headerlink" title="3. 将引导扇区写进软盘中"></a>3. 将引导扇区写进软盘中</h3><ul>
 <li><p>此时软盘和编译好的源码都准备好了，并且都放在了bochs目录下，在终端输入：</p>
 <p><code>dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc</code></p>
 </li>
@@ -578,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在Ubuntu上安装Bochs"><span class="nav-number">1.</span> <span class="nav-text"><a href="#2-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs" class="headerlink" title="2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs"></a>2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在Ubuntu上安装NASM"><span class="nav-number">2.</span> <span class="nav-text"><a href="#3-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM" class="headerlink" title="3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM"></a>3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用NASM编译源文件"><span class="nav-number">3.</span> <span class="nav-text"><a href="#1-&#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;" class="headerlink" title="1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;"></a>1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装工具"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;&#x5DE5;&#x5177;" class="headerlink" title="&#x5B89;&#x88C5;&#x5DE5;&#x5177;"></a>&#x5B89;&#x88C5;&#x5DE5;&#x5177;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在Mac上使用VirtualBox虚拟机安装Ubuntu"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-&#x5728;Mac&#x4E0A;&#x4F7F;&#x7528;VirtualBox&#x865A;&#x62DF;&#x673A;&#x5B89;&#x88C5;Ubuntu" class="headerlink" title="1. &#x5728;Mac&#x4E0A;&#x4F7F;&#x7528;VirtualBox&#x865A;&#x62DF;&#x673A;&#x5B89;&#x88C5;Ubuntu"></a>1. &#x5728;Mac&#x4E0A;&#x4F7F;&#x7528;VirtualBox&#x865A;&#x62DF;&#x673A;&#x5B89;&#x88C5;Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在Ubuntu上安装Bochs"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs" class="headerlink" title="2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs"></a>2. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;Bochs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在Ubuntu上安装NASM"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#3-&#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM" class="headerlink" title="3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM"></a>3. &#x5728;Ubuntu&#x4E0A;&#x5B89;&#x88C5;NASM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将源程序编译成可执行文件制作启动盘"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5C06;&#x6E90;&#x7A0B;&#x5E8F;&#x7F16;&#x8BD1;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;" class="headerlink" title="&#x5C06;&#x6E90;&#x7A0B;&#x5E8F;&#x7F16;&#x8BD1;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;"></a>&#x5C06;&#x6E90;&#x7A0B;&#x5E8F;&#x7F16;&#x8BD1;&#x6210;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用NASM编译源文件"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#1-&#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;" class="headerlink" title="1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;"></a>1. &#x4F7F;&#x7528;NASM&#x7F16;&#x8BD1;&#x6E90;&#x6587;&#x4EF6;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-生成虚拟软盘"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-&#x751F;&#x6210;&#x865A;&#x62DF;&#x8F6F;&#x76D8;" class="headerlink" title="2. &#x751F;&#x6210;&#x865A;&#x62DF;&#x8F6F;&#x76D8;"></a>2. &#x751F;&#x6210;&#x865A;&#x62DF;&#x8F6F;&#x76D8;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-将引导扇区写进软盘中"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#3-&#x5C06;&#x5F15;&#x5BFC;&#x6247;&#x533A;&#x5199;&#x8FDB;&#x8F6F;&#x76D8;&#x4E2D;" class="headerlink" title="3. &#x5C06;&#x5F15;&#x5BFC;&#x6247;&#x533A;&#x5199;&#x8FDB;&#x8F6F;&#x76D8;&#x4E2D;"></a>3. &#x5C06;&#x5F15;&#x5BFC;&#x6247;&#x533A;&#x5199;&#x8FDB;&#x8F6F;&#x76D8;&#x4E2D;</span></a></li></ol></li></ol></div>
             
 
           </div>
