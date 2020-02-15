@@ -1,0 +1,33 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master # 此处修改为自己存放 Hexo 源文件的分支
+
+    - name: Prepare Node env
+      uses: actions/setup-node@v1
+      with:
+        node-version: "10.x"
+
+    - name: Set env
+      env: 
+        GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}  
+      run: |
+        git config --global user.name 'ChenCyl'
+        git config --global user.email 'srsrszd@163.com'
+        sed -i "s/GITHUB_ACCESS_TOKEN/$GITHUB_ACCESS_TOKEN/g" ./_config.yml
+
+    - name: Hexo
+      run: |
+        npm i -g hexo-cli
+        npm i
+        hexo clean && hexo g && hexo d
