@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 自己的房间
-subtitle: 倒计时 1 年
-description: 
-author: Hitoka
-language: 
+title: Kay's travel
+subtitle:
+description:
+author: Kay
+language: zh-CN
 timezone:
 
 # URL
@@ -31,7 +31,10 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+external_link:
+  enable: true  # Open external links in new tab
+  field: site 
+  exclude: []
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -49,7 +52,7 @@ highlight:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 20
   order_by: -date
   
 # Category & Tag
