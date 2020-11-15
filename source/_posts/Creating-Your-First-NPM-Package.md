@@ -1,5 +1,5 @@
 ---
-title: Creating Your First NPM Package
+title: 「阅读笔记」Creating Your First NPM Package
 date: 2019-04-11 18:22:48
 excerpt: 介绍初次创建 npm package 的步骤
 categories: 阅读笔记

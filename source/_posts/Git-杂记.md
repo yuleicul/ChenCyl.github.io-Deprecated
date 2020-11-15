@@ -24,15 +24,15 @@ updated: 2019-07-12 19:25:46
 ## `git rebase` 命令
 > 在不同分支和同一分支中都有用处
 
-### 替代 `git pull` <sup>[1]</sup>
+### 替代 `git pull`
 
-假设当前分支为 `feature`。`git rebase` 可以实现拉取 `master` 的内容，并且移动 `feature` 的提交（可以设置区间）到 `HEAD`。 
+假设当前分支为 `feature`。`git rebase` 可以实现拉取 `master` 的内容，并且移动 `feature` 的提交（可以设置区间）到 `HEAD`。
 
-**用法**
+**用法**[^1]
 
 ```bash
 # 在 feature 分支 rebase orgin
-$ git checkout feature  
+$ git checkout feature
 $ git rebase origin 
 
 # 若 rebase 过程中出现冲突 -> 解决冲突 -> git add .（无需 git commit）
@@ -45,9 +45,9 @@ $ git rebase --abort
 $ git push --force-with-lease origin feature 
 ```
 
-### 编辑、删除、复制、粘贴提交<sup>[2]</sup>
+### 编辑、删除、复制、粘贴提交
 
-**用法**
+**用法**[^2]
 
 ```bash
 # 对单一分支进编辑删除复制等操作
@@ -60,3 +60,7 @@ $ git checkout master
 $ git reset --hard  0c72e64
 ```
 
+[^1]: [Git Community Book](http://gitbook.liuhui998.com/4_2.html)
+
+[^2]: [【Git】rebase 用法小结](https://www.jianshu.com/p/4a8f4af4e803)
+ 
