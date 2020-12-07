@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Kay">
+  <meta name="keywords" content="">
+  <title>Hello, OS world! - Kay&#39;s travel</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"chencyl.github.io","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":255349875,"gtag":"G-V4DCTNRDFS","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>一只 Kay 的旅行</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default-img.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Hello, OS world!">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-07-20 01:13" pubdate>
+        2018年7月20日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hello, OS world!</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 年前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>从0开始到&quot;Hello, OS world!&quot;</p>
+</blockquote>
+<p>这篇文章主要涉及:</p>
+<ul>
+<li>如何安装VirtualBox 、Ubuntu、NASM 、Bochs</li>
+<li>如何生成虚拟软盘</li>
+<li>如何将引导扇区写入软盘，即运行一个超超超超小的“操作系统”</li>
+</ul>
+<p>这一系列过程以及其中遇到的一些bug。废话不多说，开始吧！</p>
+<h1 id="安装工具"><a class="markdownIt-Anchor" href="#安装工具"></a> 安装工具</h1>
+<p>工欲善其事，必先利其器。先介绍NASM和Bochs：</p>
+<blockquote>
+<p>NASM，全称Netwide Assembler，是一款基于英特尔x86架构的汇编与反汇编工具。它可以用来编写16位、32位（IA-32）和64位（x86-64）的程序。 NASM被认为是Linux平台上最受欢迎的汇编工具之一。Bochs，主要用于操作系统开发（当一个模拟操作系统崩溃，它不崩溃主机操作系统，所以可以调试仿真操作系统）和在主机操作系统运行其他来宾操作系统。（来自维基百科）</p>
+</blockquote>
+<h2 id="1-在mac上使用virtualbox虚拟机安装ubuntu"><a class="markdownIt-Anchor" href="#1-在mac上使用virtualbox虚拟机安装ubuntu"></a> 1. 在Mac上使用VirtualBox虚拟机安装Ubuntu</h2>
+<p>我完全参照了<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenhaifeiniao/article/details/69397000">在Mac上使用virtualbox虚拟机安装ubuntu</a></p>
+<p>其中第三点<strong>主机与虚拟机文件夹共享</strong>在后来的操作中也非常有用</p>
+<h2 id="2-在ubuntu上安装bochs"><a class="markdownIt-Anchor" href="#2-在ubuntu上安装bochs"></a> 2. 在Ubuntu上安装Bochs</h2>
+<p>不要用命令行直接安装，要去官网下载之后才能调试。</p>
+<ol>
+<li>
+<p>在Ubuntu中进入<a target="_blank" rel="noopener" href="http://bochs.sourceforge.net/">Boths官网</a>，首页中有关于最新版的信息，点击SourceForge Project Page</p>
+</li>
+<li>
+<p>然后就出现了一大堆东西，该下载哪个呢？从书上之后的代码来看，应该是下载<code>boths-版本号.tar.gz</code>，我的是<code>nasm-2.6.9.tar.gz</code></p>
+</li>
+<li>
+<p>下载完毕后打开终端，总共只有5条命令，第一条是：</p>
+<p><code>tar vxzf boths-2.6.9.tar.gz的绝对地址</code></p>
+<p>绝对地址可以直接拖那个文件进终端，我的是</p>
+<p><code>tar vxzf /home/chenyulei/下载/bochs-2.6.9.tar.gz</code></p>
+</li>
+<li>
+<p>继续在终端输入第二条命令：</p>
+<p><code>cd bochs-2.6.9</code></p>
+<p>在主目录新建一个名为bochs-2.6.9的文件夹并打开</p>
+</li>
+<li>
+<p>继续输入第三条命令：（<strong>记得以后重新输入的时候一定要在bochs-2.6.9目录下，就是要cd bochs-2.6.9一下</strong>）</p>
+<p><code>./configure --enable-debugger --enable-disasm</code></p>
+<p>这一步是为了打开调试功能的开关，但会出现一些bug：</p>
+<ul>
+<li>
+<p>Bug1：<code>configure: error: no acceptable C compiler found in $PATH</code></p>
+<p>解决方法：首先输入<code>cd</code>回到主目录（不知道是否必然但是最好这样做一下，之后的bug也是，就不再提醒了），然后输入<code>sudo apt-get install gcc</code></p>
+</li>
+<li>
+<p>Bug2：<code>configure: error: C++ preprocessor &quot;/lib/cpp&quot; fails sanity check</code></p>
+<p>解决方法：<code>sudo apt-get install build-essential</code></p>
+</li>
+<li>
+<p>Bug3：<code>ERROR: X windows gui was selected, but X windows libraries were not found.</code></p>
+<p>解决方法：<code>sudo apt-get install xorg-dev</code></p>
+</li>
+<li>
+<p>Bug4：</p>
+   <pre><code class="hljs stata">fatal <span class="hljs-keyword">error</span>: X11/Xlib.<span class="hljs-keyword">h</span>: <span class="hljs-keyword">No</span> such <span class="hljs-keyword">file</span> or directory
+fatal <span class="hljs-keyword">error</span>: X11/extensions/Xrandr.<span class="hljs-keyword">h</span>: <span class="hljs-keyword">No</span> such <span class="hljs-keyword">file</span> or directory</code></pre>
+<p>解决方法：<code>sudo apt-get install libx11-dev libxrandr-dev</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>直到没有error后，输入第四条和第五条命令：</p>
+<pre><code class="hljs gauss"><span class="hljs-built_in">make</span>
+sudo <span class="hljs-built_in">make</span> install</code></pre>
+</li>
+</ol>
+<h2 id="3-在ubuntu上安装nasm"><a class="markdownIt-Anchor" href="#3-在ubuntu上安装nasm"></a> 3. 在Ubuntu上安装NASM</h2>
+<ol>
+<li>
+<p>在Ubuntu中进入<a target="_blank" rel="noopener" href="https://www.nasm.us/">NASM官网</a>，在首页的Latest Version中选择The latest stable version，我的是2.13.03</p>
+</li>
+<li>
+<p>然后又出现了一大堆东西，依然下载<code>nasm-版本号.tar.gz</code>，我的是<code>nasm-2.13.03.tar.gz</code></p>
+</li>
+<li>
+<p>下载完毕后打开终端，总共只有5条命令，分别是</p>
+<pre><code class="hljs angelscript">tar vxzf nasm<span class="hljs-number">-2.13</span><span class="hljs-number">.03</span>.tar.gz的绝对地址
+
+cd nasm<span class="hljs-number">-2.13</span><span class="hljs-number">.03</span>
+
+/.configure
+
+make
+
+sudo make install</code></pre>
+</li>
+</ol>
+<h1 id="将源程序编译成可执行文件制作启动盘"><a class="markdownIt-Anchor" href="#将源程序编译成可执行文件制作启动盘"></a> 将源程序编译成可执行文件制作启动盘</h1>
+<p>该部分参考了https://blog.csdn.net/friendley/article/details/51398336</p>
+<h2 id="1-使用nasm编译源文件"><a class="markdownIt-Anchor" href="#1-使用nasm编译源文件"></a> 1. 使用NASM编译源文件</h2>
+<ul>
+<li>在安装ubuntu时准备的共享文件夹这时候派上用场了，在mac os上把下载好的书上的代码复制到共享文件夹中，在ubuntu中的共享文件夹中打开终端，输入<code>nasm boot.asm -o boot.bin</code></li>
+<li>将boot.bin和bootsrc移动到bochs-2.6.9目录下</li>
+</ul>
+<h2 id="2-生成虚拟软盘"><a class="markdownIt-Anchor" href="#2-生成虚拟软盘"></a> 2. 生成虚拟软盘</h2>
+<ul>
+<li>依次在终端输入<code>cd bochs-2.6.9</code>、<code>bximage</code></li>
+<li>依次操作：
+<ul>
+<li>输入1，回车</li>
+<li>输入fd，回车</li>
+<li>接下来都回车（默认输入方括号中的内容）</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-将引导扇区写进软盘中"><a class="markdownIt-Anchor" href="#3-将引导扇区写进软盘中"></a> 3. 将引导扇区写进软盘中</h2>
+<ul>
+<li>
+<p>此时软盘和编译好的源码都准备好了，并且都放在了bochs目录下，在终端输入：</p>
+<p><code>dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc</code></p>
+</li>
+<li>
+<p>在bochs-2.6.9目录中找到bothscr并打开，修改其中内容为：</p>
+<p>特别注意：第9、10、13行的地址要修改为你的文件的绝对地址，在文件上右键属性可以查看父文件夹地址。</p>
+<pre><code class="hljs clean">###################################################################
+# Configuration file for Bochs
+###################################################################
+ 
+# how much memory the emulated machine will have
+megs: <span class="hljs-number">32</span>
+ 
+# filename <span class="hljs-keyword">of</span> ROM images
+romimage: file=/home/chenyulei/bochs<span class="hljs-number">-2.6</span><span class="hljs-number">.9</span>/bios/BIOS-bochs-latest, address=<span class="hljs-number">0xfffe0000</span>
+vgaromimage: file=/home/chenyulei/bochs<span class="hljs-number">-2.6</span><span class="hljs-number">.9</span>/bios/VGABIOS-elpin<span class="hljs-number">-2.40</span>
+ 
+# what disk images will be used
+floppya: <span class="hljs-number">1</span>_44=/home/chenyulei/bochs<span class="hljs-number">-2.6</span><span class="hljs-number">.9</span>/a.img, status=inserted
+ 
+# choose the boot disk
+boot: floppy
+ 
+# <span class="hljs-keyword">where</span> do we send log message?
+log: bochsout.txt
+ 
+# disable the mouse
+mouse: enabled=<span class="hljs-number">0</span>
+ 
+# enable key mapping, using US layout <span class="hljs-keyword">as</span> default
+keyboard: type=mf, serial_delay=<span class="hljs-number">200</span>, paste_delay=<span class="hljs-number">100000</span>
+</code></pre>
+</li>
+<li>
+<p>在终端输入<code>bochs -f bochsrc</code></p>
+</li>
+<li>
+<p>依次操作：</p>
+<ul>
+<li>回车</li>
+<li>输入b 0x7c00，回车（在内存0x7c00处设置断点）</li>
+<li>输入c，回车（继续执行，直到遇上断点）</li>
+<li>输入c，回车</li>
+</ul>
+</li>
+</ul>
+<p>如果bochs中出现了红色的Hello, OS world!那么恭喜你成功了。</p>
+<h1 id="附部分bochs调试指令"><a class="markdownIt-Anchor" href="#附部分bochs调试指令"></a> 附：部分Bochs调试指令</h1>
+<table>
+<thead>
+<tr>
+<th>行为</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在某物理地址设置断点</td>
+<td>b addr</td>
+</tr>
+<tr>
+<td>显示当前所有断点信息</td>
+<td>info break</td>
+</tr>
+<tr>
+<td>继续执行，直到遇上断点</td>
+<td>c</td>
+</tr>
+<tr>
+<td>单步执行</td>
+<td>s</td>
+</tr>
+<tr>
+<td>单步执行（遇到函数则跳过）</td>
+<td>n</td>
+</tr>
+<tr>
+<td>查看寄存器的信息</td>
+<td>info cpu 或 r 或 fp 或 sreg 或 creg</td>
+</tr>
+<tr>
+<td>查看堆栈</td>
+<td>print-stack</td>
+</tr>
+<tr>
+<td>查看内存物理地址内容</td>
+<td>xp /nuf addr</td>
+</tr>
+<tr>
+<td>查看线性地址内容</td>
+<td>x /nuf addr</td>
+</tr>
+<tr>
+<td>反汇编一段内存</td>
+<td>u start end</td>
+</tr>
+<tr>
+<td>反汇编执行的每一条指令</td>
+<td>trace-on</td>
+</tr>
+<tr>
+<td>每执行一条指令就打印CPU信息</td>
+<td>trace-reg</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/11/12/Docker-%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker 入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/06/19/cocos2d-x%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">cocos2d-x游戏开发的一些问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', '255349875', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4DCTNRDFS"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V4DCTNRDFS');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

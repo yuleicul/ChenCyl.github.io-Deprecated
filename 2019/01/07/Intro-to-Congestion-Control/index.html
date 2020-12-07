@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Kay">
+  <meta name="keywords" content="">
+  <title>「阅读笔记」Intro to Congestion Control - Kay&#39;s travel</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"chencyl.github.io","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":255349875,"gtag":"G-V4DCTNRDFS","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>一只 Kay 的旅行</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default-img.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="「阅读笔记」Intro to Congestion Control">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-01-07 17:38" pubdate>
+        2019年1月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「阅读笔记」Intro to Congestion Control</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 年前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>原文：<a target="_blank" rel="noopener" href="http://squidarth.com/rc/programming/networking/2018/07/18/intro-congestion.html">http://squidarth.com/rc/programming/networking/2018/07/18/intro-congestion.html</a></p>
+</blockquote>
+<p>本文主要介绍拥塞控制中的「慢开始和拥塞避免」算法。慢开始是刚指开始的拥塞窗口很小，从 1 开始，随着传输轮次的增加拥塞窗口呈指数增长，当拥塞窗口等于 ssthresh 时，变为线性增长，直到检测到拥塞（丢包），窗口变 1，ssthresh 变为拥塞时的一半。另外，作者还分析了这个算法的缺点。</p>
+<h2 id="extracts"><a class="markdownIt-Anchor" href="#extracts"></a> Extracts</h2>
+<p><strong>It’s worth noting too that</strong> the protocol that TCP works on top of, IP, operates by transmitting packets with a maximum size of 1500 bytes. So if a sender needs to send 100kb, they need to <strong>chop up</strong> that data into segments, send them over TCP, and receive acknowledgements for <mark>all</mark> of those segments.</p>
+<p><strong>It’s also worth noting here that</strong> senders do not know up front what the properties of the links that they are sending information on are. If you request the website “<a target="_blank" rel="noopener" href="http://www.google.com">http://www.google.com</a>”, for instance, the packets you send are probably going through many links before finally getting to Google’s servers, and the rate at which you can send information is fundamentally going to be <mark>clamped</mark> by the slowest link on that route. （短板效应）</p>
+<h3 id="like-pipe"><a class="markdownIt-Anchor" href="#like-pipe"></a> Like Pipe</h3>
+<p>Using the <strong>analogy</strong> of the link as a <mark>pipe</mark>, you can think of the <em>delay</em> as the <mark>length</mark> of the pipe, and the <em>bandwidth</em> as the <mark>circumference</mark> of the pipe. An important statistic about a link is the bandwidth-delay product (BDP). This can be thought of the <mark>volume</mark> of the pipe in the pipe analogy. A link is <em>fully <strong>utilized</strong></em> when the number of bytes flowing through it is equal to the BDP.</p>
+<h3 id="indicators"><a class="markdownIt-Anchor" href="#indicators"></a> Indicators</h3>
+<p>What indicators do senders have that congestion is happening? There are two main indicators: <mark>packet loss</mark> and <mark>increased round trip times</mark> for packets. There are two ways that a TCP sender could detect that a packet is lost. <mark>Detecting Packet Loss</mark> &amp; <mark>Fast Retransmit</mark>.</p>
+<p>Fast Retransmit: The receiver sends back “duplicate acks”. In TCP, receivers only acknowledge packets that are sent in order. If a packet is sent out of order, it will send out an acknowledgement for the last packet it saw in order. So, if a receiver has received segments 1,2, and 3, and then receives segment #5, it will ack segment #3 again, because #5 came in out of order. In Tahoe, if a sender receives 3 duplicate acks, it considers a packet lost. This is considered “Fast Retransmit”, because it doesn’t wait for the timeout to happen.</p>
+<h3 id="congestion-window"><a class="markdownIt-Anchor" href="#congestion-window"></a> Congestion Window</h3>
+<p>If the <mark>congestion window</mark> on a sender is set to <code>2</code>, that means that after the sender sends <code>2</code> segments, it must wait to get an acknowledgment from the receiver in order to send any more. The congestion window is often referred to as the “flight size”, because it also corresponds to the number of segments “in flight” at any given point in time.</p>
+<p>（发送窗口 = min { 接收窗口， 拥塞窗口}，假设接收方有足够大缓存空间及接收窗口足够大，则发送窗口 == 拥塞窗口）</p>
+<h3 id="issues"><a class="markdownIt-Anchor" href="#issues"></a> Issues</h3>
+<p>There are a number of issues with this approach though, which is why it is no longer used today. In particular, it takes a <mark>really long time, especially on higher bandwidth networks</mark>, for the algorithm to actually take full advantage of the available bandwidth. This is because the window size grows pretty slowly after hitting the slow start threshold.</p>
+<p>Another issue is that <mark>packet loss doesn’t necessarily mean that congestion is occuring</mark>–some links, like WiFi, are just inherently lossy. Reacting drastically by cutting the window size to 1 isn’t necessarily always appropriate.</p>
+<p>A final issue is that this algorithm uses packet loss as the indicator for whether there’s congestion. <mark>If the packet loss is happening due to congestion, you are already too late</mark>–the window is too high, and you need to let the queues drain.</p>
+<p><img src="/assets/tcp-tahoe-reno.png" srcset="/img/loading.gif" alt="tcp-tahoe-reno" /></p>
+<h2 id="words-adv"><a class="markdownIt-Anchor" href="#words-adv"></a> Words (adv.)</h2>
+<h3 id="collectively"><a class="markdownIt-Anchor" href="#collectively"></a> collectively</h3>
+<blockquote>
+<p>In order for both senders to finish sending the information that they are sending, they need to <strong>collectively</strong> <strong>reduce</strong> the amount of information that they are sending.</p>
+</blockquote>
+<p>为了防止 congestion 让两个 senders 都顺利地完成信息的发送，他们需要集体减少信息的数量。</p>
+<h3 id="fully"><a class="markdownIt-Anchor" href="#fully"></a> fully</h3>
+<blockquote>
+<p>A link is <strong>fully utilized</strong> when the number of bytes flowing through it is equal to the BDP.</p>
+</blockquote>
+<h3 id="fundamentally"><a class="markdownIt-Anchor" href="#fundamentally"></a> fundamentally</h3>
+<blockquote>
+<p>For instance, the packets you send are probably going through many links before finally getting to Google’s servers, and the rate at which you can send information is <strong>fundamentally going to be clamped</strong> by the slowest link on that route.</p>
+</blockquote>
+<p>基本上/根本上是被最慢的链接堵塞住的。</p>
+<h3 id="intuitively"><a class="markdownIt-Anchor" href="#intuitively"></a> intuitively</h3>
+<blockquote>
+<p>To understand this <strong>intuitively</strong>, …</p>
+</blockquote>
+<p>直观地理解这一点</p>
+<h3 id="fairly"><a class="markdownIt-Anchor" href="#fairly"></a> fairly</h3>
+<blockquote>
+<p>The algorithm itself is <strong>fairly</strong> simple.</p>
+</blockquote>
+<p>相当地简单</p>
+<h3 id="effectively"><a class="markdownIt-Anchor" href="#effectively"></a> effectively</h3>
+<blockquote>
+<p>This <strong>effectively</strong> doubles the congestion window on every round trip.</p>
+</blockquote>
+<p>这有效地使每次往返的拥堵窗口加倍。</p>
+<h3 id="accordingly"><a class="markdownIt-Anchor" href="#accordingly"></a> accordingly</h3>
+<blockquote>
+<p>For instance, if another sender starts sending packets on the same link, it will reduce the bandwidth available, and the sender will need to adjust <strong>accordingly</strong>. If another sender on the same link stops sending packets, the sender will have more bandwidth available, and in order to utilize it, will need to adjust <strong>accordingly</strong>.</p>
+</blockquote>
+<h3 id="drastically-necessarily"><a class="markdownIt-Anchor" href="#drastically-necessarily"></a> drastically &amp; necessarily</h3>
+<blockquote>
+<p>Reacting <strong>drastically</strong> by cutting the window size to 1 isn’t <strong>necessarily</strong> always appropriate.</p>
+</blockquote>
+<p><strong>剧烈地</strong>反应为…并不一定总是<strong>必然地</strong>合适的。</p>
+<h3 id="barely"><a class="markdownIt-Anchor" href="#barely"></a> barely</h3>
+<blockquote>
+<p>the Tahoe sender barely gets any bytes through</p>
+</blockquote>
+<p>几乎没有；仅仅</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">阅读笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/02/All-About-Floats/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">「阅读笔记」All About Floats</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/01/04/%E8%A7%A3%E5%AF%86%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95/">
+                        <span class="hidden-mobile">「阅读笔记」解密英语语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', '255349875', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4DCTNRDFS"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V4DCTNRDFS');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

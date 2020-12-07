@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Kay">
+  <meta name="keywords" content="">
+  <title>React DnD 入门 - Kay&#39;s travel</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"chencyl.github.io","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":255349875,"gtag":"G-V4DCTNRDFS","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>一只 Kay 的旅行</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default-img.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="React DnD 入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-06 17:15" pubdate>
+        2020年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">React DnD 入门</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：36 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>这篇文章的诞生原因是实际项目中有拖放的需求，导师推荐我使用 React DnD，在使用的过程我产生了一些感悟，在此分享给大家。</p>
+<h2 id="关于拖放"><a class="markdownIt-Anchor" href="#关于拖放"></a> 关于拖放</h2>
+<h3 id="随处可见的拖放"><a class="markdownIt-Anchor" href="#随处可见的拖放"></a> 随处可见的拖放</h3>
+<p>拖放，是生活中最常见的交互之一。在手机上，拖动应用图标改变它的位置；在电脑上，拖动文件到垃圾桶来删除它；包括，我最喜欢 QQ 的一个功能：拖动消息徽标表示已读。</p>
+<h3 id="前端拖放的发展"><a class="markdownIt-Anchor" href="#前端拖放的发展"></a> 前端拖放的发展</h3>
+<p>在 HTML5 Drag and Drop（后文简称 DnD） API 诞生之前，开发者常用的实现拖放的方法是监听鼠标事件，一个完整的拖放操作往往需要监听 mousedown、mousemove 和 mouseup 事件。HTML5 DnD API 诞生定义了一系列的拖拽事件，例如 drag、dragenter、dragover 等。除此之外，它还新增了一些特性，比如拖拽图像，即拖拽时跟随鼠标图像。我们可以想象在原生 API 出现之前开发者如果想要实现「拖拽图像」，大概会去监听鼠标的 mousemove 事件，根据鼠标移动的位置去实时地渲染一个跟随鼠标的图形。现在就不需要这样做了，原生 API 已经给我们提供了这样的支持。</p>
+<p>除了拖拽图像，我们还可以通过 API 定义拖拽的效果。什么是拖拽的效果呢？在 Chrome 下，当把一个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API">链接</a>拖拽到地址栏的时候，鼠标下方会出现一个加号，这就是拖拽效果。加号代表的拖拽效果是 「copy」。这样的交互不光在浏览器中有，操作系统里其实也有。你可以做这样一个操作，在电脑桌面拖拽一个文件，同时按住 Alt/Option，此时鼠标下出现了加号，松开鼠标，就成功复制了一份文件。</p>
+<p>我们可以在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTML_Drag_and_Drop_API">这里</a>查看有关 HTML DnD 的相关 API。</p>
+<h2 id="react-dnd-是什么"><a class="markdownIt-Anchor" href="#react-dnd-是什么"></a> React DnD 是什么</h2>
+<p>如果你正在使用 React，正好需要实现拖放这种交互，那 React-DnD 会是一个很不错的选择。为什么呢<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="React DnD features, https://react-dnd.github.io/react-dnd/about#features
+">[1]</span></a></sup>？</p>
+<h3 id="react-dnd-的特性"><a class="markdownIt-Anchor" href="#react-dnd-的特性"></a> React DnD 的特性</h3>
+<p>第一，它非常适合组件化的应用；</p>
+<p>第二，它和 React 的心智模型高度重合，声明式且不直接操作 DOM；</p>
+<p>第三，它填补了原生 Drag &amp; Drop API 的设计缺陷，磨平了浏览器间的不一致性。虽然之前提到了很多原生 API 的比起鼠标事件的优点，但不可否决地它也存在很多缺陷。在这里推荐一篇<a target="_blank" rel="noopener" href="https://quirksmode.org/blog/archives/2009/09/the_html5_drag.html">文章</a>，感兴趣的话可以去这篇文章里全文搜索 fucking 来感受一下作者在使用原生 API 过程中的愤怒。</p>
+<p>第四，它是可拓展和可测试的。React DnD 的不光可以用 HTML5 DnD 的 API 来实现的，它可以接受自定义的底层实现。例如可以基于触摸事件、鼠标事件来自定义底层的逻辑，然后再根据它接口的要求封装一层，这在 React-DnD 里叫做自定义的 backend。官方提供了 3 个 backend<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="React DnD backends, https://react-dnd.github.io/react-dnd/docs/backends/html5
+">[2]</span></a></sup>，分别用于鼠标拖放、触摸拖放和测试，测试用的 backend 可以让拖放的交互出现在 node 环境中。</p>
+<h3 id="what-does-it-look-like"><a class="markdownIt-Anchor" href="#what-does-it-look-like"></a> What does It Look Like？</h3>
+<p>先来感受一下 React DnD 在使用的时候长什么样子，<a target="_blank" rel="noopener" href="https://codesandbox.io/s/github/react-dnd/react-dnd/tree/gh-pages/examples_hooks_ts/01-dustbin/single-target?from-embed">戳这里</a>。</p>
+<h3 id="react-dnd-的定义"><a class="markdownIt-Anchor" href="#react-dnd-的定义"></a> React DnD 的定义</h3>
+<p>带着对 React DnD 的印象，我们看一下它的定义：</p>
+<blockquote>
+<p>React DnD is a set of React utilities to help you build complex drag and drop interfaces while keeping your components decoupled.<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="React DnD overview, https://react-dnd.github.io/react-dnd/docs/overview
+">[3]</span></a></sup></p>
+</blockquote>
+<p>React DnD 是一系列 React 工具的集合，它能帮助我们构建复杂的拖放交互，并且让组件保持解耦状态。</p>
+<h2 id="monitor"><a class="markdownIt-Anchor" href="#monitor"></a> Monitor</h2>
+<p>接下来介绍 React DnD 里非常重要的一个概念，monitor。</p>
+<h3 id="监视器"><a class="markdownIt-Anchor" href="#监视器"></a> 监视器</h3>
+<p>拖放是一种有内部状态的交互，比如是否正在拖拽、正在拖拽什么东西、拖拽的位置、是否可以放置、是否已经放置了，我们如何拿到 React DnD 内部的这些状态？答案是通过 Monitor<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span class="hint--top hint--rounded" aria-label="React DnD monitor, https://react-dnd.github.io/react-dnd/docs/overview#monitors
+">[4]</span></a></sup>。</p>
+<blockquote>
+<p>Monitor（监视器、监控），正如它的名字一样，开发者可以透过监视器观察到内部状态。</p>
+</blockquote>
+<h3 id="收集状态"><a class="markdownIt-Anchor" href="#收集状态"></a> 收集状态</h3>
+<p>具体怎么拿呢？请看下图（起点为打工人）。</p>
+<p><img src="/assets/react-dnd.assets/image-20201206164455871.png" srcset="/img/loading.gif" alt="collect-state" /></p>
+<p>上图可以归纳为两步：</p>
+<ol>
+<li>通过 collect 函数收集 monitor 暴露的状态；</li>
+<li>将 collect 函数传给 hook，hook 返回状态。</li>
+</ol>
+<p>代码如下：</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">collect</span>(<span class="hljs-params">monitor</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> &#123;
+    highlighted: monitor.canDrop(),
+    hovered: monitor.isOver()
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> [&#123; highlighted, hovered &#125;, drag] = useDrag(&#123;
+  item: &#123;...&#125;,
+  collect
+&#125;)</code></pre>
+<p>在<a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/docs/api/drag-source-monitor">这里</a>我们可以看到 monitor 暴露的全部状态。</p>
+<h2 id="react-dnd-api"><a class="markdownIt-Anchor" href="#react-dnd-api"></a> React DnD API</h2>
+<p>下面介绍 React DnD 最主要的三个 API：DndProvider、useDrag 和 useHook。如下图，我们有两个组件 Drag Source 拖拽源和 Drop Target 放置目标，他们被 DndProvider 包裹。组件内部分别调用对应的 hook，拖拽源会调用 useDrag，放置目标会调用 useDrop。</p>
+<p><img src="/assets/react-dnd.assets/P89XihYAEcqvupUcvpqKwXwQ1CWrqMGo6ACRNUtmJOE1Lx3cngmXBqR7LiW02KL0CeKqVD9Uj3WGcacEh_mD_i1XZQVrqI4HRsn9y9Y49Cyd4_q_vSTOK6vN60w8SsNbe0crvAlO0y0.png" srcset="/img/loading.gif" alt="react-dnd-api" /></p>
+<h3 id="dndprovider"><a class="markdownIt-Anchor" href="#dndprovider"></a> DndProvider</h3>
+<p>DndProvider 需要属性 backend，<a href="#react-dnd-%E7%9A%84%E7%89%B9%E6%80%A7">之前</a>我有提到过 backend，它是对底层 API 的一层封装，比如这里用的 html5-backend 就是对 html5 拖放 API 的一层封装。React DnD 把它设计成这种类似插件的、可插拔（pluggable）的形式，便于让开发者自定义 backend。</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; HTML5Backend &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dnd-html5-backend&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; DndProvider &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dnd&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">YourApp</span> </span>&#123;
+  <span class="hljs-function"><span class="hljs-title">render</span>(<span class="hljs-params"></span>)</span> &#123;
+    <span class="hljs-keyword">return</span> (
+      &lt;DndProvider backend=&#123;HTML5Backend&#125;&gt;
+        <span class="hljs-comment">/* Your Drag-and-Drop Application */</span>
+      &lt;/DndProvider&gt;
+    )
+  &#125;
+&#125;</code></pre>
+<h3 id="usedrag"><a class="markdownIt-Anchor" href="#usedrag"></a> useDrag</h3>
+<p>A hook to use the current component as a drag source.</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useDrag &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dnd&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">DraggableComponent</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> [&#123; isDragging &#125;, drag] = useDrag(&#123;
+    item: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;Box&#x27;</span>, ... &#125;,
+    begin: <span class="hljs-function">(<span class="hljs-params">monitor</span>) =&gt;</span> &#123;&#125;,
+    end: <span class="hljs-function">(<span class="hljs-params">item, monitor</span>) =&gt;</span> &#123;&#125;,
+    collect: <span class="hljs-function">(<span class="hljs-params">monitor</span>) =&gt;</span> (&#123;
+      isDragging: monitor.isDragging()
+    &#125;)
+  &#125;)
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;drag&#125;</span>&gt;</span>Drag Source<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&#125;</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数字段</th>
+<th>说明</th>
+<th>是否必须</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>item</td>
+<td>拖拽源，可自定数据，但 type 必须有</td>
+<td>是</td>
+<td>object (DragObject)</td>
+</tr>
+<tr>
+<td>|— type</td>
+<td>拖拽源的类型</td>
+<td>是</td>
+<td>string | symbol</td>
+</tr>
+<tr>
+<td>begin</td>
+<td>拖动开始时被调用，返回的对象会覆盖 item</td>
+<td>-</td>
+<td>(monitor: DragSourceMonitor) =&gt; DragObject | undefined | void</td>
+</tr>
+<tr>
+<td>end</td>
+<td>拖动停止时被调用</td>
+<td>-</td>
+<td>(draggedItem: DragObject | undefined, monitor: DragSourceMonitor) =&gt; void</td>
+</tr>
+<tr>
+<td>canDrag</td>
+<td>覆盖默认行为，定义拖拽源是否允许被拖动，</td>
+<td>-</td>
+<td>boolean | ((monitor: DragSourceMonitor) =&gt; boolean)</td>
+</tr>
+<tr>
+<td>isDragging</td>
+<td>覆盖默认行为，定义拖拽源是否正在被拖动</td>
+<td>-</td>
+<td>(monitor: DragSourceMonitor) =&gt; boolean</td>
+</tr>
+<tr>
+<td>collect</td>
+<td>收集函数，可收集内部状态</td>
+<td>-</td>
+<td>(monitor: DragSourceMonitor) =&gt; CollectedProps</td>
+</tr>
+<tr>
+<td>options</td>
+<td>The drag source options</td>
+<td>-</td>
+<td>object</td>
+</tr>
+<tr>
+<td>|— dropEffect</td>
+<td>拖放效果</td>
+<td>-</td>
+<td>string</td>
+</tr>
+<tr>
+<td>previewOptions</td>
+<td>DragPreview options</td>
+<td>-</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usedrop"><a class="markdownIt-Anchor" href="#usedrop"></a> useDrop</h3>
+<p>A hook to use the current component as a drop target.</p>
+<pre><code class="hljs jsx"><span class="hljs-keyword">import</span> &#123; useDrop &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dnd&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myDropTarget</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> [&#123; canDrop &#125;, drop] = useDrop(&#123;
+    accept: <span class="hljs-string">&#x27;Box&#x27;</span>,
+    drop: <span class="hljs-function">(<span class="hljs-params">item, monitor</span>) =&gt;</span> &#123;&#125;,
+    collect: <span class="hljs-function">(<span class="hljs-params">monitor</span>) =&gt;</span> &#123;
+    	canDrop: monitor.canDrop()
+    &#125;
+  &#125;)
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;drop&#125;</span>&gt;</span>Drop Target<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&#125;</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数字段</th>
+<th>说明</th>
+<th>是否必须</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accept</td>
+<td>拖拽源的类型</td>
+<td>是</td>
+<td>string | symbol</td>
+</tr>
+<tr>
+<td>drop</td>
+<td>放置时被调用，返回的对象可以通过 monitor.getDropResult() 得到</td>
+<td>-</td>
+<td>(item: DragObject, monitor: DropTargetMonitor) =&gt; DropResult | undefined</td>
+</tr>
+<tr>
+<td>hover</td>
+<td>悬停时被调用</td>
+<td>-</td>
+<td>(item: DragObject, monitor: DropTargetMonitor) =&gt; void</td>
+</tr>
+<tr>
+<td>canDrop</td>
+<td>覆盖默认行为，定义放置目标是否允许放置。</td>
+<td>-</td>
+<td>(item: DragObject, monitor: DropTargetMonitor) =&gt; boolean</td>
+</tr>
+<tr>
+<td>collect</td>
+<td>收集函数，可收集内部状态</td>
+<td>-</td>
+<td>(monitor: DropTargetMonitor) =&gt; CollectedProps</td>
+</tr>
+<tr>
+<td>options</td>
+<td>The drop target optinos</td>
+<td>-</td>
+<td>any</td>
+</tr>
+</tbody>
+</table>
+<h3 id="思考"><a class="markdownIt-Anchor" href="#思考"></a> 思考</h3>
+<p>看完 React DnD 的 API 之后，不知道你有没有产生疑问，它的 API 为什么要这么设计呢？引用 React DnD 文档里的话<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="React DnD overview, https://react-dnd.github.io/react-dnd/docs/overview
+">[3]</span></a></sup>，这种设计在第一次使用时会让人望而却步（intimidating），那他为什么仍然要这么设计呢？这个问题留给你去思考。</p>
+<p>好的，此时再来看看刚刚的那个<a target="_blank" rel="noopener" href="https://codesandbox.io/s/github/react-dnd/react-dnd/tree/gh-pages/examples_hooks_ts/01-dustbin/single-target?from-embed">例子</a>，这个时候我们已经可以清楚地知道它在干嘛了（响指）。</p>
+<h2 id="react-dnd-能做什么"><a class="markdownIt-Anchor" href="#react-dnd-能做什么"></a> React DnD 能做什么</h2>
+<p>去<a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/examples">这里</a>探索 React DnD 的各种用法吧。</p>
+<h2 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h2>
+<p>通过以上的介绍，你大概已经认识了 React DnD，认识了 HTML 原生的拖放 API，重新感受了拖放这种交互。</p>
+<p>你有没有想过，如果没有拖放，我们每天面对的网页会变成什么样？</p>
+<p>当我们再也不能拖拽 Slide 来改变它的顺序，再也不能通过拖拽图片将它复制到 Slide 里，再也不能拖出一个标签页让它变成新的窗口，再也不能拖动 jira 单来改变它的状态，当这些我们都不能做的时候，我们的效率和乐趣都会大幅度下降，是否会觉得遗憾和可惜？（肯定会吧——）</p>
+<p>所以，我们已经离不开拖放了。作为一名前端工程师，也许有一天你要去设计和实现一个拖放，希望那个时候你可以想起 React DnD。</p>
+<h2 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/gaearon">Dan Abramov</a> 是 React DnD 的贡献者之一</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/atlassian/react-beautiful-dnd">react-beautiful-dnd</a>，另一个很优秀的拖拽库，由 Atlassian 主导。与 React DnD 有不同的设计原则</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Adventure_Time">Adventure time</a>，在 react-dnd 和 react-beautiful-dnd 文档中都出现的元素，一部动画片</li>
+</ul>
+<h2 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h2>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>React DnD features, <a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/about#features">https://react-dnd.github.io/react-dnd/about#features</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span>React DnD backends, <a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/docs/backends/html5">https://react-dnd.github.io/react-dnd/docs/backends/html5</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span>React DnD overview, <a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/docs/overview">https://react-dnd.github.io/react-dnd/docs/overview</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span>React DnD monitor, <a target="_blank" rel="noopener" href="https://react-dnd.github.io/react-dnd/docs/overview#monitors">https://react-dnd.github.io/react-dnd/docs/overview#monitors</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Skills/">Skills</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/React/">React</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/06/%E4%BA%BA%E7%94%9F%E5%B0%B1%E6%98%AF%E6%97%A5%E5%B8%B8/">
+                        <span class="hidden-mobile">人生就是日常</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', '255349875', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4DCTNRDFS"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V4DCTNRDFS');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
