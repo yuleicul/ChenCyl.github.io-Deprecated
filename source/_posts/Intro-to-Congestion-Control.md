@@ -1,10 +1,10 @@
 ---
-title: 「阅读笔记」Intro to Congestion Control
+title: Intro to Congestion Control | English Reading
 date: 2019-01-07 17:38:09
 index_img: /assets/tcp-tahoe-reno.png
 excerpt: 介绍拥塞控制中的「慢开始和拥塞避免」算法及其弊端
 updated: 2019-01-07 17:38:09
-categories: 阅读笔记
+categories: English Reading
 tags: Algorithm
 ---
 

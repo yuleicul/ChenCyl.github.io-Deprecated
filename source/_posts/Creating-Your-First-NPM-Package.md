@@ -1,10 +1,10 @@
 ---
-title: 「阅读笔记」Creating Your First NPM Package
+title: Creating Your First NPM Package | English Reading
 date: 2019-04-11 18:22:48
 excerpt: 介绍初次创建 npm package 的步骤
-categories: 阅读笔记
+categories: English Reading
 index_img: /assets/npm-first.png
-banner_img:
+banner_img: /assets/npm-first.png
 tags: npm
 updated: 2019-04-11 18:22:48
 ---

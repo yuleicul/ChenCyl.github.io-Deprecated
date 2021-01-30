@@ -1,8 +1,8 @@
 ---
-title: 「阅读笔记」All About Floats
+title: All About Floats | English Reading
 date: 2019-04-02 18:14:33
 excerpt: 介绍 CSS 中的 Float 属性
-categories: 阅读笔记
+categories: English Reading
 index_img: /assets/web-layout.png
 banner_img:
 tags: CSS
